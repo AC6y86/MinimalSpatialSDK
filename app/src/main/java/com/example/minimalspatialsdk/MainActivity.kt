@@ -18,6 +18,7 @@ class MainActivity : AppSystemActivity() {
         super.onSceneReady()
         
         createWalls()
+        createTicTacToeBoard()
     }
     
     private fun createWalls() {
@@ -83,6 +84,83 @@ class MainActivity : AppSystemActivity() {
                     baseColor = Color4(0.5f, 0.5f, 0.5f, 1.0f) // Darker gray
                 },
                 Transform(Pose(Vector3(0f, 0f, 0f)))
+            )
+        )
+    }
+    
+    private fun createTicTacToeBoard() {
+        val wallDistance = 5f // Same as front wall distance
+        val boardSize = 3f // Overall board size
+        val lineThickness = 0.1f // Thicker lines for better visibility
+        val boardCenterY = 2.2f // Higher position
+        val zOffset = -0.05f // More offset from wall
+        
+        // Define positions for non-uniform grid
+        // Smaller center square = lines closer together in middle
+        val leftLineX = -boardSize * 0.25f  // 25% from center (closer together)
+        val rightLineX = boardSize * 0.25f
+        val topLineY = boardCenterY + boardSize * 0.25f
+        val bottomLineY = boardCenterY - boardSize * 0.25f
+        
+        // Vertical lines
+        // Left vertical line
+        Entity.create(
+            listOf(
+                Mesh(Uri.parse("mesh://box")),
+                Box(
+                    Vector3(-lineThickness/2, -boardSize/2, -lineThickness/2),
+                    Vector3(lineThickness/2, boardSize/2, lineThickness/2)
+                ),
+                Material().apply {
+                    baseColor = Color4(1.0f, 1.0f, 1.0f, 1.0f) // White
+                },
+                Transform(Pose(Vector3(leftLineX, boardCenterY, wallDistance + zOffset)))
+            )
+        )
+        
+        // Right vertical line
+        Entity.create(
+            listOf(
+                Mesh(Uri.parse("mesh://box")),
+                Box(
+                    Vector3(-lineThickness/2, -boardSize/2, -lineThickness/2),
+                    Vector3(lineThickness/2, boardSize/2, lineThickness/2)
+                ),
+                Material().apply {
+                    baseColor = Color4(1.0f, 1.0f, 1.0f, 1.0f) // White
+                },
+                Transform(Pose(Vector3(rightLineX, boardCenterY, wallDistance + zOffset)))
+            )
+        )
+        
+        // Horizontal lines
+        // Top horizontal line
+        Entity.create(
+            listOf(
+                Mesh(Uri.parse("mesh://box")),
+                Box(
+                    Vector3(-boardSize/2, -lineThickness/2, -lineThickness/2),
+                    Vector3(boardSize/2, lineThickness/2, lineThickness/2)
+                ),
+                Material().apply {
+                    baseColor = Color4(1.0f, 1.0f, 1.0f, 1.0f) // White
+                },
+                Transform(Pose(Vector3(0f, topLineY, wallDistance + zOffset)))
+            )
+        )
+        
+        // Bottom horizontal line
+        Entity.create(
+            listOf(
+                Mesh(Uri.parse("mesh://box")),
+                Box(
+                    Vector3(-boardSize/2, -lineThickness/2, -lineThickness/2),
+                    Vector3(boardSize/2, lineThickness/2, lineThickness/2)
+                ),
+                Material().apply {
+                    baseColor = Color4(1.0f, 1.0f, 1.0f, 1.0f) // White
+                },
+                Transform(Pose(Vector3(0f, bottomLineY, wallDistance + zOffset)))
             )
         )
     }
