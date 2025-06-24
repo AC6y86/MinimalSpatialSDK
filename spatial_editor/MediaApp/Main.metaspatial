@@ -1,0 +1,19 @@
+{
+  "version": "0.5.5",
+  "scene": {
+    "name": "Main",
+    "entities": [
+      {
+        "id": "root",
+        "name": "Root",
+        "components": [],
+        "transform": {
+          "position": [0.0, 0.0, 0.0],
+          "rotation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1.0, 1.0, 1.0]
+        },
+        "children": []
+      }
+    ]
+  }
+}
