@@ -79,3 +79,7 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+# Gradle distribution
+gradle-*/
+gradle-wrapper.zip
