@@ -2,6 +2,6 @@
 plugins {
     id("com.android.application") version "8.1.0" apply false
     id("org.jetbrains.kotlin.android") version "2.0.20" apply false
-    id("com.meta.spatial.plugin") version "0.5.5" apply (true)
+    id("com.meta.spatial.plugin") version "0.6.1" apply (true)
     id("com.google.devtools.ksp") version "2.0.20-1.0.24" apply true
 }
